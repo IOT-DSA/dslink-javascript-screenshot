@@ -1,0 +1,17 @@
+{
+  "name": "dslink-javascript-screenshot",
+  "version": "1.0.0",
+  "description": "A DSLink for taking screenshots using PhantomJS.",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "getDependencies": [
+    "node install.js"
+  ],
+  "configs": {
+    "broker": {
+      "type": "url"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "dslink-javascript-screenshot",
+  "version": "1.0.0",
+  "description": "A DSLink for taking screenshots using PhantomJS.",
+  "dependencies": {
+    "babel-polyfill": "^6.5.0",
+    "dslink": "git://github.com/IOT-DSA/sdk-dslink-javascript.git#artifacts",
+    "webshot": "^0.18.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.3.17",
+    "babel-preset-es2015": "^6.3.13"
+  }
+}
