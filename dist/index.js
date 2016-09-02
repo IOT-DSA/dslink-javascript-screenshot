@@ -22,13 +22,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Screenshot = function (_SimpleNode$class) {
-  _inherits(Screenshot, _SimpleNode$class);
+var Screenshot = function (_SimpleNode) {
+  _inherits(Screenshot, _SimpleNode);
 
   function Screenshot() {
     _classCallCheck(this, Screenshot);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Screenshot).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Screenshot.__proto__ || Object.getPrototypeOf(Screenshot)).apply(this, arguments));
   }
 
   _createClass(Screenshot, [{
@@ -50,25 +50,35 @@ var Screenshot = function (_SimpleNode$class) {
       };
 
       return new Promise(function (resolve, reject) {
-        var stream = (0, _webshot2.default)(text, options);
-        var list = [];
+        try {
+          var stream = (0, _webshot2.default)(text, options);
+          var list = [];
 
-        stream.on('data', function (data) {
-          list.push(data);
-        });
-
-        stream.on('end', function () {
-          console.log('Screenshotted ' + text + ' successfully.');
-          resolve({
-            png: Buffer.concat(list)
+          stream.on('data', function (data) {
+            list.push(data);
           });
-        });
+
+          stream.on('error', function (e) {
+            console.error(e);
+            reject(e);
+          });
+
+          stream.on('end', function () {
+            console.log('Screenshotted ' + text + ' successfully.');
+            resolve({
+              png: Buffer.concat(list)
+            });
+          });
+        } catch (e) {
+          console.error(e);
+          reject(e);
+        }
       });
     }
   }]);
 
   return Screenshot;
-}(_dslink.SimpleNode.class);
+}(_dslink.SimpleNode);
 
 var link = new _dslink.LinkProvider(process.argv.slice(2), 'screenshot-', {
   defaultNodes: _structure.defaultNodes,

@@ -4,7 +4,7 @@
   "description": "A DSLink for taking screenshots using PhantomJS.",
   "dependencies": {
     "babel-polyfill": "^6.5.0",
-    "dslink": "^1.0.0",
+    "dslink": "^1.2.0",
     "webshot": "^0.18.0"
   },
   "devDependencies": {
